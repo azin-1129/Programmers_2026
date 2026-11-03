@@ -1,27 +1,12 @@
 class Solution {
-    static int N;
-    static int count;
-    public long solution(int n) {
-        N=n;
-        // 1로 시작
-        // 2로 시작
-        func(1);
-        func(2);
-        
-        // 반복마다 1, 2를 고르면서, 합산값이 n이라면 count++ 하고 종료
-        return count;
-    }
-    static void func(int x){
-        if(x>N){
-            return;
+    public long solution(int N) {
+        int[] dp=new int[2001];
+        dp[1]=1;
+        dp[2]=2;
+        for(int i=3;i<=N;i++){
+            dp[i]=(dp[i-1]+dp[i-2])%1234567;
         }
         
-        if(x==N){
-            count++;
-            return;
-        }
-        
-        func(x+1);
-        func(x+2);
+        return dp[N];
     }
 }
